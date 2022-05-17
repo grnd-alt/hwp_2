@@ -55,17 +55,20 @@ def plotXYfrom3(filename):
     plt.plot(t,y)
     plt.show()
 def plotAllXYfrom3(filenames):
-    # plt.xscale("log")
+    plt.xscale("log")
     plt.grid()
     # plt.clf()
     t = linspace(0,5,128)
     graphs = []
+    i = 0.8
     for name in filenames:
         t = loadColFromFile(name,0)
-        graphs.append(loadColFromFile(name,1))
+        graphs.append(loadColFromFile(name,-1))
         plt.plot(t,graphs[-1],label=name)
+        plt.text(i,0.2,name)
+        i += 0.01
     plt.legend()
     plt.show()
 if __name__ == "__main__":
-    # plotXY('./hwp_2/4.1/data1kO.txt')
-    plotAllXYfrom3(['./hwp_2/4.1/data1kO.txt','./hwp_2/4.2/data100O.txt'])
+    # plotXY('./hwp_2/5.1/data_led_white.txt')
+    plotAllXYfrom3(['./hwp_2/5.2/data_led_white_current.txt'])

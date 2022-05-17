@@ -34,7 +34,7 @@ def loadColFromFile(filename,col):
         y = []
         lines = file.readlines()
         for line in lines:
-            y.append(float(line.split(";")[col].replace("\n","")))
+            y.append(float(line.split(",")[col].replace("\n","").replace(",","")))
         return y
 def plotXYfrom3(filename):
     t = linspace(0,5,129)
@@ -55,11 +55,18 @@ def plotAllXYfrom3(filenames):
     plt.legend()
     plt.show()
 if __name__ == "__main__":
+    # plotAllXYfrom3([
+    #     './hwp_2/5.3/data_3.txt',
+    #     './hwp_2/5.3/data_4.txt',
+    #     './hwp_2/5.3/data_5.txt',
+    #     './hwp_2/5.3/data_d1.txt', #d2 = d1 && 4 = D4 COLLECT NEW DATA!!!
+    #     './hwp_2/5.3/data_d2.txt', 
+    #     './hwp_2/5.3/data_D4.txt'
+    #     ]) 
     plotAllXYfrom3([
-        './hwp_2/5.3/data_3.txt',
-        './hwp_2/5.3/data_4.txt',
-        './hwp_2/5.3/data_5.txt',
-        './hwp_2/5.3/data_d1.txt', #d2 = d1 && 4 = D4 COLLECT NEW DATA!!!
-        './hwp_2/5.3/data_d2.txt', 
-        './hwp_2/5.3/data_D4.txt'
-        ]) 
+        './hwp_2/5.3/external/D2_andersrum.txt',
+        './hwp_2/5.3/external/D5.txt',
+        './hwp_2/5.3/external/D1.txt', #d2 = d1 && 4 = D4 COLLECT NEW DATA!!!
+        './hwp_2/5.3/external/D2.txt', 
+        './hwp_2/5.3/external/D4.txt'
+        ])

@@ -3,28 +3,15 @@ from fileinput import filename
 import matplotlib.pyplot as plt
 from numpy import linspace
 
-# def plotXY(filename):
-#     with open(filename) as file:
-#         x = []
-#         y = []
-#         lines = file.readlines()
-#         for line in lines:
-#             x.append(line.split(";")[0])
-#             y.append(line.split(";")[1])
-#         plt.plot(x,y)
-#         plt.show()
 def plotXY(filename):
-    plt.grid()
-    # plt.xscale('log')
     with open(filename) as file:
+        x = []
+        y = []
         lines = file.readlines()
-        t = linspace(0,5,len(lines))
-        t = loadColFromFile(filename=filename,col=0)
-        y = loadColFromFile(filename=filename,col=1)
-        plt.plot(t,y,label=filename)
-        # plt.text(0,0.2,filename)
-        plt.legend()
-        plt.show()
+        for line in lines:
+            x.append(line.split(";")[0])
+            y.append(line.split(";")[1])
+        plt.plot(x,y)
 def plotXYtogether(filename1,filename2):
     t = linspace(0,5,24)
     with open(filename1) as file:
@@ -47,7 +34,7 @@ def loadColFromFile(filename,col):
         y = []
         lines = file.readlines()
         for line in lines:
-            y.append(float(line.split(";")[col].replace("\n","")))
+            y.append(float(line.split(";")[col].replace("\n","").replace(",","")))
         return y
 def plotXYfrom3(filename):
     t = linspace(0,5,129)
@@ -60,12 +47,28 @@ def plotAllXYfrom3(filenames):
     # plt.clf()
     t = linspace(0,5,128)
     graphs = []
+    i = 0.8
     for name in filenames:
         t = loadColFromFile(name,0)
-        graphs.append(loadColFromFile(name,1))
+        graphs.append(loadColFromFile(name,2))
         plt.plot(t,graphs[-1],label=name)
     plt.legend()
     plt.show()
 if __name__ == "__main__":
-    # plotXY('./hwp_2/4.1/data1kO.txt')
-    plotAllXYfrom3(['./hwp_2/4.1/data1kO.txt','./hwp_2/4.2/data100O.txt'])
+    # plotAllXYfrom3([
+    #     './hwp_2/6.3/data_3x_sperrdata_t',
+    #     './hwp_2/6.3/data_4x_sperrdata_t',
+    #     './hwp_2/6.3/data_5x_sperrdata_t',
+    #     './hwp_2/6.3/data_dt_sperrdata_xt', #d2 = d1 && 4 = D4 COLLECT NEW DATA!!!
+    #     './hwp_2/6.3/data_dt_sperrdata_xt', 
+    #     './hwp_2/6.3/data_dt_sperrdata_xt'
+    #     ]) 
+    plotAllXYfrom3([
+        './hwp_2/6.5/data_d1_sperr.txt',
+        './hwp_2/6.5/data_d3_sperr.txt',
+        './hwp_2/6.5/data_d4_sperr.txt', #d2 = d1 && 4 = D4 COLLECT NEW DATA!!!
+        './hwp_2/6.5/data_d5_sperr.txt', 
+        './hwp_2/6.5/data_d2_sperr.txt',
+        './hwp_2/6.5/data_d6_sperr.txt'
+
+        ])
